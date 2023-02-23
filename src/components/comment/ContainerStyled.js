@@ -37,7 +37,7 @@ export const StyledContainer = styled.div`
     margin-bottom: 1.25rem;
   }
 
-  .reply-btn {
+  .container-reply-actions {
     position: absolute;
     bottom: 1rem;
     right: 1rem;

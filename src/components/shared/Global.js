@@ -14,10 +14,9 @@ export const GlobalStyles = createGlobalStyle`
         justify-content: center;
         gap: 1rem;
         padding: 2rem 0;
+        padding: 2rem 1.5rem;
+
     }
     
-    .padding {
-        padding: 0 1.5rem;
-    }
 
 `;
