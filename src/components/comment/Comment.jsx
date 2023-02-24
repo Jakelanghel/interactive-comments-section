@@ -21,6 +21,7 @@ const Comment = (props) => {
         editIcon={icons.editIcon}
         plusIcon={icons.plusIcon}
         minusIcon={icons.minusIcon}
+        replyIcon={icons.replyIcon}
       />
     );
   });
@@ -34,21 +35,26 @@ const Comment = (props) => {
           <p className="date">{date}</p>
         </div>
 
-        <button className="container-reply-actions">
-          <img src={icons.replyIcon} alt="" className="reply-img" /> reply
-        </button>
-
         <div className="container-body">
           <p className="body">{body}</p>
         </div>
-        <VoteActions
-          score={score}
-          plusIcon={icons.plusIcon}
-          minusIcon={icons.minusIcon}
-        />
+
+        <div className="container-actions">
+          <VoteActions
+            score={score}
+            plusIcon={icons.plusIcon}
+            minusIcon={icons.minusIcon}
+          />
+
+          <button className="reply-btn">
+            <img src={icons.replyIcon} alt="" className="reply-img" /> reply
+          </button>
+        </div>
       </div>
 
-      {replyElements.length > 0 ? replyElements : null}
+      {replyElements.length > 0 ? (
+        <div className="container-replies">{replyElements}</div>
+      ) : null}
     </StyledContainer>
   );
 };

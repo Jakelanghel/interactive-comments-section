@@ -1,8 +1,9 @@
 import React from "react";
-import Comment from "./components/comment/Comment";
-import data from "./data.json";
 import { GlobalStyles } from "./components/shared/Global";
 import { images } from "./constants/images";
+import Comment from "./components/comment/Comment";
+import CommentInput from "./components/comment-input/CommentInput";
+import data from "./data.json";
 
 const commentElements = data.comments.map((comment) => {
   const currentUser = data.currentUser.username;
@@ -23,10 +24,13 @@ const commentElements = data.comments.map((comment) => {
 
 function App() {
   return (
-    <div className="app">
+    <>
       <GlobalStyles />
-      {commentElements}
-    </div>
+      <div className="app">
+        {commentElements}
+        <CommentInput tstImg={data.currentUser.image.webp} />
+      </div>
+    </>
   );
 }
 

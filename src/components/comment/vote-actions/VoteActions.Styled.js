@@ -1,18 +1,29 @@
 import styled from "styled-components";
 
 export const StyledVoteActions = styled.div`
-  width: 100%;
-  order: 2;
   display: flex;
-
-  button,
-  .score {
-    padding: 5px 10px;
-  }
+  background-color: var(--light-gray);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
 
   button {
-    /* border: none; */
     border-radius: 7px;
     background-color: transparent;
+    padding: 8px 10px;
+    border: none;
+  }
+
+  img {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+  }
+
+  .score {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px;
+    color: var(--blue);
   }
 `;

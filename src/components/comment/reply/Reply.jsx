@@ -14,6 +14,7 @@ const Reply = (props) => {
     editIcon,
     plusIcon,
     minusIcon,
+    replyIcon,
   } = props;
   const isCurrUsr = currentUser === userName ? true : false;
 
@@ -23,29 +24,47 @@ const Reply = (props) => {
         <div className="header">
           <img src={img} alt="" />
           <p className="user-name">{userName}</p>
-          {isCurrUsr ? <p>you</p> : null}
+          {isCurrUsr ? <p className="usr-tag">you</p> : null}
           <p className="date">{date}</p>
         </div>
 
+        <div className="container-body">
+          <p className="body">
+            <span className="reply-tag">@{userName}</span>
+            {body}
+          </p>
+        </div>
+
         {isCurrUsr ? (
-          <div className="container-reply-actions">
-            <button className="delete-btn">
-              <img src={deleteIcon} alt="" />
-            </button>
-            <button className="edit-btn">
-              <img src={editIcon} alt="" />
-            </button>
+          <div className="container-actions">
+            <VoteActions
+              score={score}
+              plusIcon={plusIcon}
+              minusIcon={minusIcon}
+            />
+
+            <div className="container-usr-actions">
+              <button className="delete-btn">
+                <img src={deleteIcon} alt="" /> delete
+              </button>
+              <button className="edit-btn">
+                <img src={editIcon} alt="" /> edit
+              </button>
+            </div>
           </div>
         ) : (
-          <div className="container-reply-actions">
-            <button className="reply-btn">reply</button>
+          <div className="container-actions">
+            <VoteActions
+              score={score}
+              plusIcon={plusIcon}
+              minusIcon={minusIcon}
+            />
+
+            <button className="reply-btn">
+              <img src={replyIcon} alt="" className="reply-img" /> reply
+            </button>
           </div>
         )}
-
-        <div className="container-body">
-          <p className="body">{body}</p>
-        </div>
-        <VoteActions score={score} plusIcon={plusIcon} minusIcon={minusIcon} />
       </div>
     </StyledContainer>
   );
