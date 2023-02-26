@@ -24,18 +24,34 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Rubik', sans-serif;
     }
 
+    html,
+    body {
+        width: 100%;
+    }
+
     body {
         background-color: var(--very-light-gray);
     }
 
     .app {
+        width: 100%;
+        padding: 2rem 1rem;
+    }
+
+    .flex-col {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
-        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
 
+    .container-replies {
+        border-left: solid 2px var(--light-gray);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
     
 

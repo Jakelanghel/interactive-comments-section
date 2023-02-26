@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
+export const StyledComment = styled.div`
+  width: 100%;
+  .comment {
+    width: 100%;
+    min-width: 100%;
+  }
 
   .comment,
   .reply {
@@ -33,7 +33,7 @@ export const StyledContainer = styled.div`
     margin-bottom: 1rem;
   }
 
-  img {
+  .avatar-img {
     width: 40px;
     height: 40px;
   }
@@ -127,9 +127,5 @@ export const StyledContainer = styled.div`
 
   .delete-btn {
     color: var(--soft-red);
-  }
-
-  .container-replies {
-    border-left: solid 2px var(--light-gray);
   }
 `;

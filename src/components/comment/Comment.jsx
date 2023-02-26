@@ -1,61 +1,80 @@
 import React from "react";
-import { StyledContainer } from "./ContainerStyled";
+import { StyledComment } from "./Comment.Styled";
 import VoteActions from "./vote-actions/VoteActions";
-import Reply from "./reply/Reply";
 
 const Comment = (props) => {
-  const { img, userName, date, body, score, replies, currentUser, icons } =
-    props;
+  const {
+    img,
+    userName,
+    date,
+    body,
+    score,
+    currentUser,
+    icons,
+    className,
+    setCommentData,
+    id,
+  } = props;
 
-  const replyElements = replies.map((reply) => {
-    return (
-      <Reply
-        key={reply.id}
-        img={reply.user.image.webp}
-        userName={reply.user.username}
-        date={reply.createdAt}
-        body={reply.content}
-        score={reply.score}
-        currentUser={currentUser}
-        deleteIcon={icons.deleteIcon}
-        editIcon={icons.editIcon}
-        plusIcon={icons.plusIcon}
-        minusIcon={icons.minusIcon}
-        replyIcon={icons.replyIcon}
-      />
-    );
-  });
+  const isCurrUsr = currentUser === userName ? true : false;
 
   return (
-    <StyledContainer>
-      <div className="comment">
+    <StyledComment>
+      <div className={className}>
         <div className="header">
-          <img src={img} alt="" />
+          <img src={img} alt="" className="avatar-img" />
           <p className="user-name">{userName}</p>
+          {isCurrUsr ? <p className="usr-tag">you</p> : null}
           <p className="date">{date}</p>
         </div>
 
         <div className="container-body">
-          <p className="body">{body}</p>
+          <p className="body">
+            <span className="reply-tag">@{userName}</span>
+            {body}
+          </p>
         </div>
 
-        <div className="container-actions">
-          <VoteActions
-            score={score}
-            plusIcon={icons.plusIcon}
-            minusIcon={icons.minusIcon}
-          />
+        {isCurrUsr ? (
+          <div className="container-actions">
+            <VoteActions
+              score={score}
+              plusIcon={icons.plusIcon}
+              minusIcon={icons.minusIcon}
+              setCommentData={setCommentData}
+              id={id}
+            />
 
-          <button className="reply-btn">
-            <img src={icons.replyIcon} alt="" className="reply-img" /> reply
-          </button>
-        </div>
+            <div className="container-usr-actions">
+              <button className="delete-btn">
+                <img src={icons.deleteIcon} alt="" /> delete
+              </button>
+              <button className="edit-btn">
+                <img src={icons.editIcon} alt="" /> edit
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="container-actions">
+            <VoteActions
+              score={score}
+              plusIcon={icons.plusIcon}
+              minusIcon={icons.minusIcon}
+              setCommentData={setCommentData}
+              id={id}
+            />
+
+            <button className="reply-btn">
+              <img src={icons.replyIcon} alt="" className="reply-img" /> reply
+            </button>
+          </div>
+        )}
       </div>
 
-      {replyElements.length > 0 ? (
+      {/* {replyElements.length > 0 ? (
         <div className="container-replies">{replyElements}</div>
-      ) : null}
-    </StyledContainer>
+      ) : null} */}
+    </StyledComment>
   );
 };
 

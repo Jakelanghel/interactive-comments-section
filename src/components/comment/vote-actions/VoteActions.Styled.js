@@ -14,6 +14,10 @@ export const StyledVoteActions = styled.div`
     border: none;
   }
 
+  button:hover {
+    cursor: pointer;
+  }
+
   img {
     width: 13px;
     height: 13px;
