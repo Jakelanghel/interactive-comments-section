@@ -19,6 +19,7 @@ const CommentBoard = (props) => {
         className="comment"
         setCommentData={setCommentData}
         id={comment.id}
+        commentArr={commentArr}
       />
     ) : (
       <div key={comment.id} className="flex-col">
@@ -35,6 +36,7 @@ const CommentBoard = (props) => {
           className="comment"
           setCommentData={setCommentData}
           id={comment.id}
+          commentArr={commentArr}
         />
         {comment.replies.map((reply) => (
           <div className="container-replies" key={reply.id}>
@@ -48,7 +50,8 @@ const CommentBoard = (props) => {
               icons={images}
               className="reply"
               setCommentData={setCommentData}
-              id={comment.id}
+              id={reply.id}
+              commentArr={commentArr}
             />
           </div>
         ))}

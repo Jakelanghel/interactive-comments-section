@@ -14,6 +14,7 @@ const Comment = (props) => {
     className,
     setCommentData,
     id,
+    commentArr,
   } = props;
 
   const isCurrUsr = currentUser === userName ? true : false;
@@ -38,11 +39,12 @@ const Comment = (props) => {
         {isCurrUsr ? (
           <div className="container-actions">
             <VoteActions
+              id={id}
               score={score}
               plusIcon={icons.plusIcon}
               minusIcon={icons.minusIcon}
+              commentArr={commentArr}
               setCommentData={setCommentData}
-              id={id}
             />
 
             <div className="container-usr-actions">
@@ -62,6 +64,7 @@ const Comment = (props) => {
               minusIcon={icons.minusIcon}
               setCommentData={setCommentData}
               id={id}
+              commentArr={commentArr}
             />
 
             <button className="reply-btn">
@@ -70,10 +73,6 @@ const Comment = (props) => {
           </div>
         )}
       </div>
-
-      {/* {replyElements.length > 0 ? (
-        <div className="container-replies">{replyElements}</div>
-      ) : null} */}
     </StyledComment>
   );
 };
