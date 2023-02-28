@@ -48,10 +48,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .container-replies {
+        width: 100%;
         border-left: solid 2px var(--light-gray);
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
     }
     
 

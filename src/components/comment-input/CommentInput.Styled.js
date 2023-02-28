@@ -43,4 +43,7 @@ export const StyledCommentInput = styled.div`
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
   }
+  button:hover {
+    cursor: pointer;
+  }
 `;

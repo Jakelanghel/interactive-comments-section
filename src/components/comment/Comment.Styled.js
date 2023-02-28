@@ -7,6 +7,11 @@ export const StyledComment = styled.div`
     min-width: 100%;
   }
 
+  .reply {
+    width: 95%;
+    min-width: 95%;
+  }
+
   .comment,
   .reply {
     background-color: var(--white);
@@ -107,6 +112,11 @@ export const StyledComment = styled.div`
       width: 15px;
       height: 15px;
     }
+  }
+  .reply-btn:hover,
+  .delete-btn:hover,
+  .edit-btn:hover {
+    cursor: pointer;
   }
 
   .reply-btn,

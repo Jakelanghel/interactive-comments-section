@@ -2,59 +2,59 @@ import React from "react";
 import Comment from "../comment/Comment";
 
 const CommentBoard = (props) => {
-  const { setCommentData, commentArr, currentUser, images } = props;
+  const { images, inputRef, setCommentData, commentArr, currentUser } = props;
 
   const commentElements = commentArr.map((comment) => {
     return comment.replies.length === 0 ? (
       <Comment
         key={comment.id}
-        img={comment.user.image.webp}
-        userName={comment.user.username}
-        date={comment.createdAt}
-        body={comment.content}
-        score={comment.score}
-        replies={comment.replies}
-        currentUser={currentUser}
+        data={comment}
         icons={images}
+        inputRef={inputRef}
         className="comment"
-        setCommentData={setCommentData}
-        id={comment.id}
+        userImg={comment.user.image.webp}
+        userName={comment.user.username}
+        currentUser={currentUser}
         commentArr={commentArr}
+        setCommentData={setCommentData}
+        commentId={comment.id}
       />
     ) : (
       <div key={comment.id} className="flex-col">
         <Comment
           key={comment.id}
-          img={comment.user.image.webp}
-          userName={comment.user.username}
-          date={comment.createdAt}
-          body={comment.content}
-          score={comment.score}
-          replies={comment.replies}
-          currentUser={currentUser}
+          data={comment}
           icons={images}
+          inputRef={inputRef}
           className="comment"
-          setCommentData={setCommentData}
-          id={comment.id}
+          userImg={comment.user.image.webp}
+          userName={comment.user.username}
+          currentUser={currentUser}
           commentArr={commentArr}
+          setCommentData={setCommentData}
+          commentId={comment.id}
         />
-        {comment.replies.map((reply) => (
-          <div className="container-replies" key={reply.id}>
-            <Comment
-              img={reply.user.image.webp}
-              userName={reply.user.username}
-              date={reply.createdAt}
-              body={reply.content}
-              score={reply.score}
-              currentUser={currentUser}
-              icons={images}
-              className="reply"
-              setCommentData={setCommentData}
-              id={reply.id}
-              commentArr={commentArr}
-            />
+
+        {
+          <div className="flex-col container-replies">
+            {comment.replies.map((reply) => (
+              <Comment
+                key={reply.id}
+                data={reply}
+                icons={images}
+                inputRef={inputRef}
+                className="reply"
+                userImg={reply.user.image.webp}
+                userName={reply.user.username}
+                currentUser={currentUser}
+                commentArr={commentArr}
+                setCommentData={setCommentData}
+                commentId={comment.id}
+                replyId={reply.id}
+              />
+            ))}
           </div>
-        ))}
+        }
       </div>
     );
   });

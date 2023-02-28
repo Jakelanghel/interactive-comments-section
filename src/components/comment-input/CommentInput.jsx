@@ -1,10 +1,19 @@
-import React, { useRef } from "react";
+import React from "react";
 import { StyledCommentInput } from "../comment-input/CommentInput.Styled";
 
 const CommentInput = (props) => {
-  const { setCommentData, commentData } = props;
+  const {
+    userImg,
+    setCommentData,
+    commentData,
+    inputRef,
+    currentUser,
+    commentArr,
+    selectedComment,
+    commentId,
+  } = props;
 
-  const getNewCommentId = () => {
+  const getNewId = () => {
     let id = 1;
     commentData.comments.forEach((comment) => {
       id += 1;
@@ -13,10 +22,41 @@ const CommentInput = (props) => {
     return id;
   };
 
+  const handleClick = () => {
+    inputRef.current.value.charAt(0) === "@" ? addReply() : addComment();
+  };
+
+  const addReply = () => {
+    const repUsrName = inputRef.current.value.split(" ")[0].slice(1);
+    const content = inputRef.current.value.split(" ").slice(1).join(" ");
+
+    const newReply = {
+      id: getNewId(),
+      content: content,
+      createdAt: "Now",
+      score: 0,
+      replyingTo: repUsrName,
+      user: {
+        image: currentUser.image,
+        username: currentUser.username,
+      },
+    };
+
+    const newCommentArr = commentArr.map((comment) => {
+      if (comment.id === selectedComment) {
+        return { ...comment, replies: [...comment.replies, newReply] };
+      } else {
+        return comment;
+      }
+    });
+    setCommentData((oldData) => ({ ...oldData, comments: newCommentArr }));
+    inputRef.current.value = "";
+  };
+
   const addComment = () => {
     const newComment = {
-      id: getNewCommentId(),
-      content: commentRef.current.value,
+      id: getNewId(),
+      content: inputRef.current.value,
       createdAt: "Now",
       score: 0,
       user: {
@@ -31,21 +71,20 @@ const CommentInput = (props) => {
       comments: [...oldData.comments, newComment],
     }));
 
-    commentRef.current.value = "";
+    inputRef.current.value = "";
   };
 
-  const commentRef = useRef();
   return (
     <StyledCommentInput>
       <textarea
         id="commentInput"
         placeholder="Add a comment..."
-        ref={commentRef}
+        ref={inputRef}
       />
 
       <div className="container-input-btn">
-        <img src={props.tstImg} alt="" />
-        <button onClick={addComment}>send</button>
+        <img src={userImg} alt="" />
+        <button onClick={handleClick}>send</button>
       </div>
     </StyledCommentInput>
   );

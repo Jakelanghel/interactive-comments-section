@@ -3,12 +3,20 @@ import CommentInput from "../../comment-input/CommentInput";
 import { StyledVoteActions } from "./VoteActions.Styled";
 
 const VoteActions = (props) => {
-  const { id, score, plusIcon, minusIcon, commentArr, setCommentData } = props;
+  const {
+    commentId,
+    replyId,
+    score,
+    plusIcon,
+    minusIcon,
+    commentArr,
+    setCommentData,
+  } = props;
 
-  const handleClick = (e) => {
+  const handleVote = (e) => {
     const op = e.target.classList[0];
     const updatedComments = commentArr.map((comment) => {
-      if (comment.id === id) {
+      if (comment.id === commentId) {
         return {
           ...comment,
           score: op === "plus" ? comment.score + 1 : comment.score - 1,
@@ -18,7 +26,7 @@ const VoteActions = (props) => {
           return comment;
         } else {
           const repliesArr = comment.replies.map((reply) =>
-            reply.id === id
+            reply.id === replyId
               ? {
                   ...reply,
                   score: op === "plus" ? reply.score + 1 : reply.score - 1,
@@ -35,11 +43,11 @@ const VoteActions = (props) => {
 
   return (
     <StyledVoteActions>
-      <button onClick={handleClick} className="plus">
+      <button onClick={handleVote} className="plus">
         <img src={plusIcon} alt="" className="plus" />
       </button>
       <p className="score">{score}</p>
-      <button onClick={handleClick}>
+      <button onClick={handleVote}>
         <img src={minusIcon} alt="" />
       </button>
     </StyledVoteActions>
