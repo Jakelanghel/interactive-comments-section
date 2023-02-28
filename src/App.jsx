@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import { GlobalStyles } from "./components/shared/Global";
-import { images } from "./constants/images";
+
 import data from "./data.json";
 
+import { GlobalStyles } from "./components/shared/Global";
+import { images } from "./constants/images";
 import CommentInput from "./components/comment-input/CommentInput";
 import CommentBoard from "./components/comment-board/CommentBoard";
 
@@ -13,8 +14,6 @@ function App() {
   });
 
   const inputRef = useRef();
-
-  console.log(commentData);
 
   return (
     <>

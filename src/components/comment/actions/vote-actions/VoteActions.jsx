@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import CommentInput from "../../comment-input/CommentInput";
 import { StyledVoteActions } from "./VoteActions.Styled";
-
 const VoteActions = (props) => {
   const {
     commentId,

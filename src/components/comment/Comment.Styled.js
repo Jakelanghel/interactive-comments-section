@@ -35,7 +35,7 @@ export const StyledComment = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.55rem;
   }
 
   .avatar-img {
