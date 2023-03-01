@@ -17,9 +17,13 @@ const Comment = (props) => {
     setCommentData,
     commentId,
     replyId,
+    id,
+    selectedComment,
   } = props;
 
   const isCurrUsr = currentUser === userName ? true : false;
+
+  console.log(id);
 
   return (
     <StyledComment>
@@ -49,6 +53,8 @@ const Comment = (props) => {
           inputRef={inputRef}
           userName={userName}
           commentId={commentId}
+          id={id}
+          selectedComment={selectedComment}
         />
       </div>
     </StyledComment>

@@ -10,7 +10,6 @@ const CommentInput = (props) => {
     currentUser,
     commentArr,
     selectedComment,
-    commentId,
   } = props;
 
   const getNewId = () => {
@@ -22,8 +21,37 @@ const CommentInput = (props) => {
     return id;
   };
 
-  const handleClick = () => {
-    inputRef.current.value.charAt(0) === "@" ? addReply() : addComment();
+  const handleClick = (e) => {
+    const btnFunction = e.target.textContent;
+
+    if (btnFunction === "send") {
+      inputRef.current.value.charAt(0) === "@" ? addReply() : addComment();
+    } else if (btnFunction === "edit") {
+      handleEdit();
+    }
+  };
+
+  const handleEdit = () => {
+    const editedContent = inputRef.current.value;
+    const updatedComments = commentArr.map((comment) => {
+      if (comment.id !== selectedComment) {
+        const updatedReplies = comment.replies.map((reply) => {
+          return reply.id !== selectedComment
+            ? reply
+            : { ...reply, content: editedContent };
+        });
+        return { ...comment, replies: updatedReplies };
+      } else {
+        return { ...comment, content: editedContent };
+      }
+    });
+    inputRef.current.value = "";
+
+    setCommentData((oldState) => ({
+      ...oldState,
+      comments: updatedComments,
+      edit: false,
+    }));
   };
 
   const addReply = () => {
@@ -84,7 +112,9 @@ const CommentInput = (props) => {
 
       <div className="container-input-btn">
         <img src={userImg} alt="" />
-        <button onClick={handleClick}>send</button>
+        <button onClick={handleClick}>
+          {commentData.edit ? "edit" : "send"}
+        </button>
       </div>
     </StyledCommentInput>
   );

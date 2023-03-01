@@ -2,7 +2,14 @@ import React from "react";
 import Comment from "../comment/Comment";
 
 const CommentBoard = (props) => {
-  const { images, inputRef, setCommentData, commentArr, currentUser } = props;
+  const {
+    images,
+    inputRef,
+    setCommentData,
+    commentArr,
+    currentUser,
+    selectedComment,
+  } = props;
 
   const commentElements = commentArr.map((comment) => {
     return comment.replies.length === 0 ? (
@@ -18,6 +25,8 @@ const CommentBoard = (props) => {
         commentArr={commentArr}
         setCommentData={setCommentData}
         commentId={comment.id}
+        id={comment.id}
+        selectedComment={selectedComment}
       />
     ) : (
       <div key={comment.id} className="flex-col">
@@ -33,6 +42,8 @@ const CommentBoard = (props) => {
           commentArr={commentArr}
           setCommentData={setCommentData}
           commentId={comment.id}
+          id={comment.id}
+          selectedComment={selectedComment}
         />
 
         {
@@ -51,6 +62,8 @@ const CommentBoard = (props) => {
                 setCommentData={setCommentData}
                 commentId={comment.id}
                 replyId={reply.id}
+                id={reply.id}
+                selectedComment={selectedComment}
               />
             ))}
           </div>

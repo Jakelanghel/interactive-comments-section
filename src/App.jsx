@@ -11,6 +11,7 @@ function App() {
   const [commentData, setCommentData] = useState({
     ...data,
     selectedComment: null,
+    edit: false,
   });
 
   const inputRef = useRef();
@@ -25,6 +26,7 @@ function App() {
           setCommentData={setCommentData}
           commentArr={commentData.comments}
           currentUser={commentData.currentUser.username}
+          selectedComment={commentData.selectedComment}
         />
         <CommentInput
           userImg={data.currentUser.image.webp}
