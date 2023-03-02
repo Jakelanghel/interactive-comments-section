@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
         --light-gray: hsl(223, 19%, 93%);
         --very-light-gray: hsl(228, 33%, 97%);
         --white: hsl(0, 0%, 100%);
+        --modal-backdrop: hsl(0, 100%, 0%, .5)
         
     }
 
@@ -27,6 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     html,
     body {
         width: 100%;
+        height: 100%;
     }
 
     body {
@@ -35,11 +37,12 @@ export const GlobalStyles = createGlobalStyle`
 
     .app {
         width: 100%;
+        height: 100%;
         padding: 2rem 1rem;
+
     }
 
     .flex-col {
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -51,6 +54,4 @@ export const GlobalStyles = createGlobalStyle`
         width: 100%;
         border-left: solid 2px var(--light-gray);
     }
-    
-
 `;

@@ -26,16 +26,11 @@ const CommentActions = (props) => {
   };
 
   const handleDelete = () => {
-    // Filter commentsArr returning all comments that don't match id
-    let updatedComments = commentArr.filter((comment) => comment.id !== id);
-    // Filter each comments replies array returning all replies that don't match id
-    updatedComments = updatedComments.map((comment) => {
-      const updatedReplies = comment.replies.filter((reply) => reply.id !== id);
-      // Replace replies arr with new filtered arr
-      const updatedComment = { ...comment, replies: updatedReplies };
-      return updatedComment;
-    });
-    setCommentData((oldState) => ({ ...oldState, comments: updatedComments }));
+    setCommentData((oldState) => ({
+      ...oldState,
+      selectedComment: id,
+      modalOpen: true,
+    }));
   };
 
   const handleEdit = () => {
